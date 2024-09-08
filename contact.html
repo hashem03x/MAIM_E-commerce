@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - RUBIC E-Commerce</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/checkUserStatus.js"></script>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">RUBIC E-Commerce</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item">
+                <a class="" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item secured">
+                <a class="" href="shop.html">Shop</a>
+              </li>
+              <li class="nav-item secured">
+                <a class="" href="cart.html"
+                  >Cart
+                  <span
+                    id="cart-length"
+                    class="badge rounded-pill text-bg-secondary"
+                    >0</span
+                  >
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="active" href="contact.html">Contact</a>
+              </li>
+              <li class="nav-item available">
+                <a class="" href="login.html">Login</a>
+              </li>
+              <li class="nav-item available">
+                <a class="" href="register.html">Register</a>
+              </li>
+              <li
+                class="secured"
+                onclick="localStorage.setItem('isLoggedIn' , false) 
+                window.location.reload()
+                "
+              >
+                <button class="btn btn-danger" href="register.html">
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-5">
+      <h1>Contact Us</h1>
+      <p>
+        If you have any questions, feel free to contact us using the form below:
+      </p>
+
+      <form id="contactForm" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" required />
+          <div class="invalid-feedback">Please enter your name.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required />
+          <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="message" class="form-label">Message</label>
+          <textarea
+            class="form-control"
+            id="message"
+            rows="4"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please enter your message.</div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Send Message</button>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <p>Follow us on:</p>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+      <p>Contact us: hhashemaahmed@gmail.com</p>
+    </footer>
+    <script>
+      // Auto Call Function to handle the Form
+      (function () {
+        "use strict";
+        const forms = document.querySelectorAll(".needs-validation");
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              } else {
+                event.preventDefault();
+                Swal.fire({
+                  title: "Message Sent!",
+                  text: "We have received your message.",
+                  icon: "success",
+                  confirmButtonText: "OK",
+                });
+                form.reset();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
+  </body>
+</html>
